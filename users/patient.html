@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>patient</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+
+   <style>
+      * {
+         font-family: sans-serif;
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      header {
+         display: flex;
+         justify-content: space-between;
+         background-color: #c7c9c9;
+         height: 8vh;
+         padding: 11px 10px 0px;
+      }
+
+      .menuBtn {
+         font-size: medium;
+         margin: 0 7px 0 7px;
+      }
+
+      .menuBtn:hover {
+         /* font-size:large; */
+         color: mediumblue;
+      }
+
+      .innerbox {
+         text-align: center;
+         margin-top: 13px;
+         width: fit-content;
+         height: auto;
+      }
+
+      .functioncol {
+         width: 200px;
+         /* height: 6vh; */
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 0px;
+      }
+
+      .operationblue {
+         background-color: #0dcaf0;
+         padding: 10px 0px;
+         /* width: 50%; */
+         /* height: 4vh; */
+         width: 96px;
+         text-align-last: center;
+         cursor: pointer;
+      }
+
+      .operationred {
+         padding: 10px 0px;
+         background-color: rgb(245, 94, 74);
+         ;
+         /* width: 50%; */
+         /* height: 4vh; */
+         width: 96px;
+         text-align-last: center;
+         cursor: pointer;
+      }
+
+      .adduser {
+         display: none;
+         margin-top: 10px;
+      }
+
+      .adduser input,
+      select {
+         width: 25%;
+         margin-bottom: 6px;
+         border-radius: 5px;
+         height: 3vh;
+      }
+
+      span {
+         display: table-cell;
+
+         /* width: 100px; */
+         /* padding: 6px 20px; */
+      }
+
+      /* colunmn style */
+
+      .agecol {
+         width: 3rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      .dobcol {
+         width: 7rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      .langcol {
+         width: 12rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      .namecol {
+         width: 12rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      .phonecol {
+         width: 7rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      .emailcol {
+         width: 15rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      .addcol {
+         width: 10rem;
+         height: 6vh;
+         text-align-last: start;
+         border-bottom: ridge;
+         padding: 4px 0px 0px 4px;
+      }
+
+      /* columns style */
+
+      .menu button {
+         border: none;
+         background: none;
+         cursor: pointer;
+      }
+
+      .operationeditblue {
+         cursor: pointer;
+         width: 63px;
+         text-align-last: center;
+         background-color: #0dcaf0;
+      }
+
+      .operationeditred {
+         cursor: pointer;
+         width: 63px;
+         text-align-last: center;
+         background-color: rgb(245, 94, 74);
+         ;
+      }
+
+      .operationeditok {
+         cursor: pointer;
+         width: 63px;
+         text-align-last: center;
+         background-color: #52c452;
+         ;
+      }
+
+
+      /* demo */
+      body {
+         margin: 0;
+         padding: 0;
+         background-position: center;
+         font-family: sans-serif
+      }
+
+      .loginbox {
+         width: 320px;
+         height: 430px;
+         background:
+            #000;
+         color: #fff;
+         top: 50%;
+         left: 50%;
+         position: absolute;
+         transform: translate(-50%, -50%);
+         box-sizing:
+            border-box;
+         padding: 70px 30px;
+         border-radius: 53px;
+      }
+
+      .avatar {
+         width: 100px;
+         height: 100px;
+         border-radius: 50%;
+         position: absolute;
+         top:
+            -50px;
+         left: calc(50% - 50px)
+      }
+
+      h1 {
+         margin: 0;
+         padding: 0 0 20px;
+         text-align: center;
+         font-size: 22px
+      }
+
+      .loginbox p {
+         margin:
+            0;
+         padding: 0;
+         font-weight: bold
+      }
+
+      .loginbox input {
+         width: 100%;
+         margin-bottom: 20px
+      }
+
+      .loginbox input[type="text"],
+      input[type="password"] {
+         border: none;
+         border-bottom: 1px solid #fff;
+         background: transparent;
+         outline: none;
+         height:
+            40px;
+         color: #fff;
+         font-size: 16px
+      }
+
+      .loginbox input[type="submit"] {
+         border: none;
+         outline: none;
+         height: 40px;
+         background:
+            #fb2525;
+         color: #fff;
+         font-size: 18px;
+         border-radius: 20px
+      }
+
+      .loginbox input[type="submit"]:hover {
+         cursor:
+            pointer;
+         background: #ffc107;
+         color: #000
+      }
+
+      .loginbox a {
+         text-decoration: none;
+         font-size: 12px;
+         line-height: 20px;
+         color:
+            darkgrey
+      }
+
+      .loginbox a:hover {
+         color: #ffc107
+      }
+
+      /* table style */
+      .testTableDataStu,
+      .testTableHeaderStu {
+         padding: 6px;
+         text-align: center;
+         text-wrap: pretty;
+
+      }
+
+      .studentTestTable thead {
+         position: sticky;
+         background: #ebebeb;
+         top: 0px;
+         height: 7vh;
+         border-radius: 4px;
+         cursor: pointer;
+      }
+
+
+      .studentTestTable {
+         box-shadow: 0px 0px 13px 0px rgb(148 145 145 / 70%);
+      }
+
+      #studentTableCont {
+         height: 85vh;
+         scroll-behavior: smooth;
+         overflow-y: scroll;
+      }
+
+      .studentTestTable,
+      .leaveRequestTable {
+         width: 95%;
+         margin-inline: auto;
+         margin-top: 25px;
+         border-collapse: collapse;
+         font-family: arial, sans-serif;
+      }
+
+      .leaveRequestTable {
+         margin-top: 75px;
+      }
+
+      .testTableData,
+      .testTableHeader {
+         padding: 8px;
+         border: 1px solid #dddddd;
+         text-align: center !important;
+      }
+
+      .testTableRow:nth-child(even) {
+         background-color: #f8f8f8;
+      }
+
+      .completed,
+      .testTableRow:nth-child(odd) {
+         background-color: #ffffff;
+      }
+
+      th,
+      td {
+         /* border: 1px solid black; */
+         padding: 20px;
+         /* Optional: Add padding to cells for better visualization */
+      }
+
+
+      .start {
+         margin-inline: auto;
+         padding: 5px 10px;
+         border: none;
+         border-radius: 50px;
+         background-color: rgb(245, 94, 74);
+      }
+
+      .edit {
+         margin-inline: auto;
+         padding: 5px;
+         border: none;
+         border-radius: 14px;
+         background-color: #0dcaf0;
+      }
+
+      .save {
+         margin-inline: auto;
+         padding: 5px;
+         border: none;
+         border-radius: 14px;
+         background-color: #52c452;
+      }
+
+
+      /* profile container */
+      .user-profile {
+         text-align: center;
+      }
+
+
+      .user-profile .user-avatar img {
+         height: 90px;
+         border-radius: 100px;
+      }
+
+      .user-profile h5.user-name {
+         margin: 0 0 0.5rem 0;
+      }
+
+      .user-profile h6.user-email {
+         margin: 0;
+         font-size: 0.8rem;
+         font-weight: 400;
+         color: #9fa8b9;
+      }
+
+
+      .form-control {
+         border: 1px solid #cfd1d8;
+         -webkit-border-radius: 8px;
+         -moz-border-radius: 8px;
+         border-radius: 8px;
+         font-size: .825rem;
+         background: #ffffff;
+         color: #2e323c;
+         font-size: medium;
+
+      }
+
+      .card {
+         background: #ffffff;
+         -webkit-border-radius: 5px;
+         -moz-border-radius: 5px;
+         border-radius: 5px;
+         border: 0;
+         margin-bottom: 1rem;
+         width: 50%;
+      }
+   </style>
+
+</head>
+
+<body>
+   <div id="mainbody">
+      <header>
+         <div>
+            <h5 id="loginPerson" style="margin-bottom: 0;"></h5>
+            <span style="font-size: 13px;">(Patient)</span>
+         </div>
+         <div class="menu">
+            <!-- <button type="button" class="btn btn-light" onclick="show_appointment()">Appointments</button> -->
+            <button onclick="displayAppointment()" class="menuBtn">Appointments</i></button>
+            <button onclick="displayHistory()" class="menuBtn">History</i></button>
+            <button onclick="displayProfile()" class="menuBtn">Profile</i></button>
+            <button onclick="logout()" class="menuBtn">Logout</i></button>
+         </div>
+      </header>
+      <div id="appointment_cont" style="text-align: center;margin-top: 13px;">
+
+         <!-- Button trigger modal -->
+         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1"
+            style="margin-left: 89%;">
+            Add New
+         </button>
+
+         <!-- Modal -->
+         <div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="staticBackdropLabel">APPOINTMENT FORM</h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+
+                     <form id="appointment_form">
+                        <div class="row g-3">
+                           <div class="col-md-6">
+                              <input type="text" name="name" id="pname" class="form-control" placeholder="First Name">
+                           </div>
+                           <div class="col-md-6">
+                              <input type="tel" name="phone" id="pphone" class="form-control"
+                                 placeholder="Phone Number">
+                           </div>
+                           <div class="col-md-6">
+                              <input type="email" name="email" id="pemail" class="form-control"
+                                 placeholder="Enter Email">
+                           </div>
+                           <!-- <div class="col-md-6">
+                              <input type="text" name="address" class="form-control" placeholder="Address" required>
+                           </div> -->
+
+                           <div class="col-md-6">
+                              <!-- <span>State:</span> -->
+                              <select name="state" id="state" class="form-select" style="height: fit-content;"
+                                 onchange="getDoctor()" required>
+                                 <option value="" selected>Select</option>
+                                 <option value="andhra Pradesh">Andhra Pradesh</option>
+                                 <option value="arunachal Pradesh">Arunachal Pradesh</option>
+                                 <option value="assam">Assam</option>
+                                 <option value="bihar">Bihar</option>
+                                 <option value="chhattisgarh">Chhattisgarh</option>
+                                 <option value="goa">Goa</option>
+                                 <option value="gujarat">Gujarat</option>
+                                 <option value="haryana">Haryana</option>
+                                 <option value="himachal Pradesh">Himachal Pradesh</option>
+                                 <option value="jharkhand">Jharkhand</option>
+                                 <option value="karnataka">Karnataka</option>
+                                 <option value="kerala">Kerala</option>
+                                 <option value="madhya Pradesh">Madhya Pradesh</option>
+                                 <option value="maharashtra">Maharashtra</option>
+                                 <option value="manipur">Manipur</option>
+                                 <option value="meghalaya">Meghalaya</option>
+                                 <option value="mizoram">Mizoram</option>
+                                 <option value="nagaland">Nagaland</option>
+                                 <option value="odisha">Odisha</option>
+                                 <option value="punjab">Punjab</option>
+                                 <option value="rajasthan">Rajasthan</option>
+                                 <option value="sikkim">Sikkim</option>
+                                 <option value="tamil Nadu">Tamil Nadu</option>
+                                 <option value="telangana">Telangana</option>
+                                 <option value="tripura">Tripura</option>
+                                 <option value="uttar Pradesh">Uttar Pradesh</option>
+                                 <option value="uttarakhand">Uttarakhand</option>
+                                 <option value="west Bengal">West Bengal</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6">
+                              <select name="department" id="department" class="form-select" style="height: fit-content;"
+                                 onchange="getDoctor()" required>
+                                 <option value="">Select Specialty</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6">
+                              <input type="date" name="date" id="date" class="form-control" placeholder="Enter Date"
+                                 onchange="getDoctor()" required>
+                           </div>
+                           <input type="text" id="patient" name="patient" style="display: none;">
+                           <input type="text" id="availability" name="availability" style="display: none;">
+                           <div class="col-12">
+                              <select name="doctor" id="doctor" class="form-select" style="height: fit-content;"
+                                 onblur="getSlot()" required>
+                                 <option value="" selected>Select Doctor</option>
+
+                              </select>
+                           </div>
+                           <div class="col-md-12">
+                              <select name="slot" id="slot" class="form-select" style="height: fit-content;" required>
+                                 <option value="" selected>Select Time</option>
+
+                              </select>
+                           </div>
+
+                           <div class="col-12 mt-5">
+                              <button type="button" id="closeAppointmentBtn" class="btn btn-secondary"
+                                 data-bs-dismiss="modal" onclick="clearform()" style="margin-left: 46%;">Clear</button>
+                              <button type="submit" id="book_button" class="btn btn-primary float-end">Book
+                                 Appointment</button>
+                           </div>
+                        </div>
+                     </form>
+
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <table class="studentTestTable" id="studentTestTable">
+            <thead>
+               <tr class="testTableRowHeader">
+                  <th class="testTableHeaderStu">Name</th>
+                  <th class="testTableHeaderStu">Date</th>
+                  <th class="testTableHeaderStu">Time</th>
+                  <th class="testTableHeaderStu">Specialist</th>
+                  <th class="testTableHeaderStu">doctor</th>
+                  <th class="testTableHeaderStu">Phone</th>
+                  <th class="testTableHeaderStu">Cancel</th>
+               </tr>
+            </thead>
+
+            <tbody id="stu-table-body">
+
+            </tbody>
+         </table>
+      </div>
+      <div id="appointment_history" style="display: none;">
+
+         <h4 style="text-align: center;">Previous Appointments</h4>
+         <table class="studentTestTable" id="historyTable">
+            <thead>
+               <tr class="testTableRowHeader">
+                  <th class="testTableHeaderStu">Name</th>
+                  <th class="testTableHeaderStu">Date</th>
+                  <th class="testTableHeaderStu">Time</th>
+                  <th class="testTableHeaderStu">Specialist</th>
+                  <th class="testTableHeaderStu">doctor</th>
+                  <th class="testTableHeaderStu">Phone</th>
+               </tr>
+            </thead>
+
+            <tbody id="history-table-body">
+
+            </tbody>
+         </table>
+
+      </div>
+
+      <div id="profile" style="display: none;">
+         <div class="card-body" style="width: 50%;margin: auto;">
+            <div class="user-profile">
+               <div class="user-avatar">
+                  <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png" alt="patient dp">
+               </div>
+            </div>
+            <form id="profile_update_form">
+               <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                     <h6 class="mb-2 text-primary">Personal Details</h6>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" class="form-control" name="name" id="fullName" placeholder="Enter full name"
+                           required>
+                     </div>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="gender">Gender </label><br>
+                        <input type="radio" name="gender" value="male" required>Male
+                        <input type="radio" name="gender" value="female" required>Female
+                        <input type="radio" name="gender" value="Others" required>Others
+                     </div>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="eMail">Email</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter email ID"
+                           required>
+                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number" required>
+                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="Birth">Birth</label>
+                        <input type="date" class="form-control" id="dob" max="2006-12-31" name="dob" placeholder="Enter DOB YYYY/MM/DD"
+                           required>
+                     </div>
+                  </div>
+
+               </div>
+               <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                     <h6 class="mt-3 mb-2 text-primary">Address</h6>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="Street">Area</label>
+                        <input type="name" class="form-control" name="address" id="area" placeholder="Enter Street"
+                           required>
+                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="ciTy">City</label>
+                        <select id="profile_city" name="city" class="form-select" style="height: fit-content;" required>
+                           <option value="" selected>Select</option>
+                           <option value="mumbai">Mumbai</option>
+                           <option value="delhi">Delhi</option>
+                           <option value="bangalore">Bangalore</option>
+                           <option value="hyderabad">Hyderabad</option>
+                           <option value="chennai">Chennai</option>
+                           <option value="kolkata">Kolkata</option>
+                           <option value="pune">Pune</option>
+                           <option value="ahmedabad">Ahmedabad</option>
+                           <option value="jaipur">Jaipur</option>
+                           <option value="lucknow">Lucknow</option>
+                           <option value="kanpur">Kanpur</option>
+                           <option value="nagpur">Nagpur</option>
+                           <option value="indore">Indore</option>
+                           <option value="thane">Thane</option>
+                           <option value="bhopal">Bhopal</option>
+                           <option value="visakhapatnam">Visakhapatnam</option>
+                           <option value="surat">Surat</option>
+                           <option value="pimpri-chinchwad">Pimpri-Chinchwad</option>
+                           <option value="patna">Patna</option>
+                           <option value="vadodara">Vadodara</option>
+                           <option value="ghaziabad">Ghaziabad</option>
+                           <option value="ludhiana">Ludhiana</option>
+                           <option value="agra">Agra</option>
+                           <option value="nashik">Nashik</option>
+                           <option value="faridabad">Faridabad</option>
+                           <option value="meerut">Meerut</option>
+                           <option value="rajkot">Rajkot</option>
+                           <option value="kalyan-dombivli">Kalyan-Dombivli</option>
+                           <option value="vasai-virar">Vasai-Virar</option>
+                           <option value="varanasi">Varanasi</option>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                     <div class="form-group">
+                        <label for="state">State</label>
+                        <select id="profile_state" name="state" class="form-select" style="height: fit-content;" required>
+                           <option value="" selected>Select</option>
+                           <option value="andhra Pradesh">Andhra Pradesh</option>
+                           <option value="arunachal Pradesh">Arunachal Pradesh</option>
+                           <option value="assam">Assam</option>
+                           <option value="bihar">Bihar</option>
+                           <option value="chhattisgarh">Chhattisgarh</option>
+                           <option value="goa">Goa</option>
+                           <option value="gujarat">Gujarat</option>
+                           <option value="haryana">Haryana</option>
+                           <option value="himachal Pradesh">Himachal Pradesh</option>
+                           <option value="jharkhand">Jharkhand</option>
+                           <option value="karnataka">Karnataka</option>
+                           <option value="kerala">Kerala</option>
+                           <option value="madhya Pradesh">Madhya Pradesh</option>
+                           <option value="maharashtra">Maharashtra</option>
+                           <option value="manipur">Manipur</option>
+                           <option value="meghalaya">Meghalaya</option>
+                           <option value="mizoram">Mizoram</option>
+                           <option value="nagaland">Nagaland</option>
+                           <option value="odisha">Odisha</option>
+                           <option value="punjab">Punjab</option>
+                           <option value="rajasthan">Rajasthan</option>
+                           <option value="sikkim">Sikkim</option>
+                           <option value="tamil Nadu">Tamil Nadu</option>
+                           <option value="telangana">Telangana</option>
+                           <option value="tripura">Tripura</option>
+                           <option value="uttar Pradesh">Uttar Pradesh</option>
+                           <option value="uttarakhand">Uttarakhand</option>
+                           <option value="west Bengal">West Bengal</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+               <div class="row gutters">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                     <div class="text-right">
+                        <button type="submit" id="profile_update_btn" name="submit"
+                           class="btn btn-primary">Update</button>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+      <script src="./js/patient.js"></script>
+</body>
+
+</html>
