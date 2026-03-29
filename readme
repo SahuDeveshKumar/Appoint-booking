@@ -2,4 +2,4 @@ This project involves developing a secure, user-friendly web application that al
 online,Utilizing token-based authentication mechanisms to ensure that only authorized users can access and
 manage their appointments.
 
-to start use comand-- npm start;
+to start use command-- npm start;
