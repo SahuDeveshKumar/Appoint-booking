@@ -1,1 +1,2 @@
-module.exports={url:'mongodb://127.0.0.1:27017'};
+let {DB_STRING}=require('dotenv').config().parsed;
+module.exports={url:DB_STRING};
