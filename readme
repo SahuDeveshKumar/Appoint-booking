@@ -1,0 +1,5 @@
+This project involves developing a secure, user-friendly web application that allows users to book appointments
+online,Utilizing token-based authentication mechanisms to ensure that only authorized users can access and
+manage their appointments.
+
+to start use comand-- npm start;
